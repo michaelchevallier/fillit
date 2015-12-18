@@ -6,7 +6,7 @@
 /*   By: mchevall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:18:21 by mchevall          #+#    #+#             */
-/*   Updated: 2015/12/18 15:09:36 by mchevall         ###   ########.fr       */
+/*   Updated: 2015/12/18 16:01:25 by mchevall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ int		ischar(char character);
 int		valid_block(char *s);
 int		valid_buf(char *s);
 int		valid_map(char *s);
+int		read_map(const char *path);
 #endif

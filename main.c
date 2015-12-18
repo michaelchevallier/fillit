@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchevall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/18 14:18:34 by mchevall          #+#    #+#             */
-/*   Updated: 2015/12/18 17:22:13 by mchevall         ###   ########.fr       */
+/*   Created: 2015/12/18 15:51:39 by mchevall          #+#    #+#             */
+/*   Updated: 2015/12/18 15:55:11 by mchevall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		read_map(const char *path)
+int		main(int argc, char **argv)
 {
-	int		fd;
-	int		ret;
-	char	buf[22];
-	int		valid;
-
-	valid = 0;
-	ret = 1;
-	fd = clean_open(path, O_RDONLY);
-	while(ret != 0)
+	if (argc != 2)
 	{
-		ret = clean_read(fd, buf, 21);
-		if ((valid_map(buf) == 0) || valid > 27)
-		{
-			ft_putstr("error");
-			exit(EXIT_FAILURE);
-		}
-		valid++;
+		ft_putstr("Please input one and only one argument !!\n");
+		return (1);
 	}
-	return (valid);
+	read_map(argv[1]);
+	ft_putstr("Toto prouve aue tu as tord\n");
+	return (0);
 }
-
-
