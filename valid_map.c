@@ -6,13 +6,13 @@
 /*   By: mchevall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:29:49 by mchevall          #+#    #+#             */
-/*   Updated: 2015/12/17 21:06:22 by mchevall         ###   ########.fr       */
+/*   Updated: 2015/12/18 15:00:36 by mchevall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			valid_buf_format(char *s)
+int			valid_buf(char *s)
 {
 	int		i;
 	int		nbc;
@@ -40,7 +40,7 @@ int			valid_buf_format(char *s)
 	return (1);
 }
 
-int			valid_block_format(char *s)
+int			valid_block(char *s)
 {
 	int		i;
 	int		valid;
@@ -52,26 +52,25 @@ int			valid_block_format(char *s)
 		if (s[i] == '#')
 		{
 			if (i == 0 && (s[i + 5] == '#' || s[i + 1] == '#'))
-					valid++;
+				valid++;
 			if (i > 0 && i < 5 && (s[i - 1] == '#' || s[i + 1] == '#' ||
-					s[i + 5] == '#'))
-					valid++;
+						s[i + 5] == '#'))
+				valid++;
 			if (i > 4 && i < 14 && (s[i - 1] == '#' || s[i + 1] == '#' ||
-					s[i + 5] == '#' || s[i - 5] == '#'))
+						s[i + 5] == '#' || s[i - 5] == '#'))
 				valid++;
 			if (i > 14 && (s[i - 1] == '#' || s[i + 1] == '#' ||
 						s[i - 5] == '#'))
 				valid++;
 		}
-	i++;
+		i++;
 	}
 	return ((valid == 4) ? 1 : 0);
 }
 
-int			main(void)
+int			valid_map(char *s)
 {
-	char tab[21] = {'#','#','#','.', '\n','#', '.', '.', '.', '\n','.','.','.','.', '\n','.', '.', '.','.', '\n','\n'};
-
-	ft_putnbr(valid_block_format(tab) + valid_buf_format(tab)) ;
+	if (valid_block(s) + valid_buf(s) == 2)
+		return (1);
 	return (0);
 }

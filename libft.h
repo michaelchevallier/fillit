@@ -6,7 +6,7 @@
 /*   By: mchevall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 17:42:19 by mchevall          #+#    #+#             */
-/*   Updated: 2015/12/08 19:15:42 by mchevall         ###   ########.fr       */
+/*   Updated: 2015/12/18 14:54:01 by mchevall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct	s_list
 char			**ft_2dtab(size_t i, size_t j);
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
+int				clean_open(const char *path, int flag);
+int				clean_read(int fildes, char *buf, size_t nbyte);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);
