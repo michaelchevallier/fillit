@@ -6,7 +6,7 @@
 /*   By: mchevall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 14:18:34 by mchevall          #+#    #+#             */
-/*   Updated: 2015/12/18 17:22:13 by mchevall         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:51:35 by mchevall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int		read_map(const char *path)
 	valid = 0;
 	ret = 1;
 	fd = clean_open(path, O_RDONLY);
-	while(ret != 0)
+	while (ret != 0)
 	{
 		ret = clean_read(fd, buf, 21);
-		if ((valid_map(buf) == 0) || valid > 27)
+		if ((valid_map(buf) == 0) || valid > 26)
 		{
 			ft_putstr("error");
 			exit(EXIT_FAILURE);
@@ -34,5 +34,3 @@ int		read_map(const char *path)
 	}
 	return (valid);
 }
-
-
