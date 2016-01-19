@@ -6,7 +6,7 @@
 /*   By: mchevall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:18:21 by mchevall          #+#    #+#             */
-/*   Updated: 2016/01/19 16:13:41 by dgalide          ###   ########.fr       */
+/*   Updated: 2016/01/19 16:16:12 by mchevall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int				valid_buf(char *s);
 int				valid_map(char *s);
 int				ft_read(int const fd, t_map map);
 int				check_space(t_map map);
+int				range_min(t_map map);
 void			put_tetri(t_map map);
 int				update_pos(t_map map);
 void			erase_tetri(t_map map, int i);
