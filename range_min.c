@@ -12,13 +12,12 @@
 
 #include "fillit.h"
 
-int		range_min(t_map *map)
+int		range_min(int nb_tetri)
 {
 	int		i;
 
 	i = 0;
-	while (i * i < map->nb_tetri * 4)
+	while (i * i < nb_tetri * 4)
 		i++;
-	map->m_range = i;
-	return(1);
+	return(i);
 }

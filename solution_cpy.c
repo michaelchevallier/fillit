@@ -12,27 +12,23 @@
 
 #include "fillit.h"
 
-char	**solution_cpy(t_map *map)
+void	solution_cpy(t_map *map)
 {
-	char	**solution;
 	int		i;
+	int		j;
 
 	i = 0;
-	if (map->solution)
-	{
-		while (map->solution[i])
-		{
-			ft_strdel(map->solution);
-			i++;
-		}
-	}
-	i = 0;
-	solution = (char **)ft_memalloc(sizeof(char *) * map->c_range + 1);
-	solution[map->c_range] = NULL;
+	j = 0;
+	if (!map->solution)
+		map->solution = ft_maketab(map->c_range, map->c_range);
 	while (i < map->c_range)
 	{
-		solution[i] = ft_strdup(map->map[i]);
+		while (j < map->c_range)
+		{
+			map->solution[i][j] = map->map[i][j];
+			j++;
+		}
+		j = 0;
 		i++;
 	}
-	return(solution);
 }
