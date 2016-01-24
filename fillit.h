@@ -6,7 +6,7 @@
 /*   By: julio <julio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:18:21 by mchevall          #+#    #+#             */
-/*   Updated: 2016/01/24 18:43:20 by dgalide          ###   ########.fr       */
+/*   Updated: 2016/01/24 20:46:41 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_map
 	int		c_range;
 	int		m_range;
 	int		s_range;
+	int		last;
 	int		*c_pos;
 	int		nb_tetri;
 	int		**tetrilist;

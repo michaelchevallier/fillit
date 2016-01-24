@@ -6,7 +6,7 @@
 /*   By: julio <julio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 13:57:02 by dgalide           #+#    #+#             */
-/*   Updated: 2016/01/24 18:42:18 by dgalide          ###   ########.fr       */
+/*   Updated: 2016/01/24 20:46:36 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ void			load_map(t_map *map)
 	int			i;
 
 	i = 0;
+	map->last = 0;
 	map->m_range = range_min(map->nb_tetri);
 	map->c_pos = (int *)malloc(sizeof(int) * 2);
 	ft_bzero(map->c_pos, 2);
