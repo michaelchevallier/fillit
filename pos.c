@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pos.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/25 17:15:48 by dgalide           #+#    #+#             */
+/*   Updated: 2016/01/25 18:50:37 by dgalide          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
-#include <stdio.h>
 
 int			update_pos(t_map *map)
 {
@@ -49,7 +60,7 @@ int			check_space(t_map *map, int *lst, int x, int y)
 	b = lst[7];
 	if (((((x + a) < map->c_range) && ((x + a) > -1)) && ((((y + b) < map->c_range)) && ((y + b) > -1))) && map->map[(x + a)][(y + b)] == '.')
 		l++;
-	return ((l == 4)? 1: 0); 
+	return ((l == 4) ? 1 : 0);
 }
 
 void		put_tetri(t_map *map, int i, int x, int y)
@@ -79,11 +90,6 @@ void		erase_tetri(t_map *map, int i)
 	int		y;
 	int		a;
 	int		b;
-	static int z;
-
-	z++;
-	/*if (z == 3)
-		ft_error();*/
 
 	if (map->rvalue != 1)
 	{

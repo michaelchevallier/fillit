@@ -1,4 +1,4 @@
-/* ************************************************************************ */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
@@ -6,88 +6,48 @@
 /*   By: mchevall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 18:04:24 by mchevall          #+#    #+#             */
-/*   Updated: 2016/01/25 15:25:18 by dgalide          ###   ########.fr       */
+/*   Updated: 2016/01/25 17:34:49 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "stdio.h"
 
-int			find(t_map *map, int i, int rvalue)
+void			loop(t_map *map, int i, int j, int k)
 {
-	int	j;
-	static int nb_passage;
-
-	nb_passage++;
-	printf("\n nb passage: %d\n",nb_passage);
-
-	printf("\n map crange: %d\n",map->c_range);
-	ft_printtab(map->map);
-	ft_putchar('\n');
-	j = 0;
+	put_tetri(map, i, j, k);
 	if (map->placed_tetri == map->nb_tetri)
 	{
+		map->rvalue = 1;
 		solution_cpy(map);
 		map->s_range = map->c_range;
-
-		ft_printtab(map->map);
-		return (rvalue);
+		return ;
 	}
-	if (map->tetrilist[i][8] == 0)
+	else if (map->rvalue != 1)
 	{
-		if (check_space(map, map->tetrilist[i]) == 1)
-		{
-			put_tetri(map, i);
-			update_pos(map);
-			while (map->tetrilist[j][8] == 1 && j < map->nb_tetri - 1)
-				j++;
-			return (find(map, j, rvalue));
-		}
-		else
-		{
-			while (update_pos(map) != 0)
-			{
-				if (check_space(map, map->tetrilist[i]) == 1)
-				{
-					put_tetri(map, i);
-					return (find(map, (i + 1), rvalue));
-				}
-			}
-			erase_tetri(map, (i - 1));
-			update_pos(map);
-			return(find(map, i, rvalue));
-		}
+		find(map, (i + 1));
+		erase_tetri(map, i);
 	}
-	else
-		return(find(map, i + 1, rvalue));
-	return (rvalue);
 }
 
-int			solve(t_map *map)
+void			find(t_map *map, int i)
 {
-	int	rvalue;
-
-	rvalue = 0;
-	find(map, 0, rvalue);
-	return (rvalue);
-}
-
-void		print_solution(t_map *map)
-{
-	int		i;
 	int		j;
+	int		k;
 
-	i = 0;
+	k = 0;
 	j = 0;
-	while (i < map->s_range)
+	if (map->rvalue != 1)
 	{
-		while (j < map->s_range)
+		while (j < map->c_range)
 		{
-			ft_putchar(map->solution[i][j]);
+			while (k < map->c_range)
+			{
+				if (check_space(map, map->tetrilist[i], j, k) == 1)
+					loop(map, i, j, k);
+				k++;
+			}
 			j++;
+			k = 0;
 		}
-		ft_putchar('\n');
-		j = 0;
-		i++;
 	}
 }

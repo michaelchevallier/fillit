@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   range_min.c                                        :+:      :+:    :+:   */
+/*   print_solution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchevall <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/19 15:48:05 by mchevall          #+#    #+#             */
-/*   Updated: 2016/01/25 17:33:34 by dgalide          ###   ########.fr       */
+/*   Created: 2016/01/25 17:22:50 by dgalide           #+#    #+#             */
+/*   Updated: 2016/01/25 17:27:28 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		range_min(int nb_tetri)
+void		print_solution(t_map *map)
 {
 	int		i;
+	int		j;
 
 	i = 0;
-	while (i * i < nb_tetri * 4)
+	j = 0;
+	while (i < map->s_range)
+	{
+		while (j < map->s_range)
+		{
+			ft_putchar(map->solution[i][j]);
+			j++;
+		}
+		ft_putchar('\n');
+		j = 0;
 		i++;
-	return (i);
+	}
 }
