@@ -6,7 +6,7 @@
 /*   By: julio <julio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:18:21 by mchevall          #+#    #+#             */
-/*   Updated: 2016/01/24 20:46:41 by dgalide          ###   ########.fr       */
+/*   Updated: 2016/01/25 16:17:12 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct	s_map
 	int		c_range;
 	int		m_range;
 	int		s_range;
-	int		last;
+	int		rvalue;
 	int		*c_pos;
 	int		nb_tetri;
 	int		**tetrilist;
@@ -50,11 +50,11 @@ int				map_xy_chr(t_map *map, int *x, int *y, char c);
 void			ft_read(int fd, t_map *map);
 void			solution_cpy(t_map *map);
 int				update_pos(t_map *map);
-int				solve(t_map *map);
-int				find(t_map *map, int i, int rvalue);
-int				check_space(t_map *map, int *lst);
+void				solve(t_map *map);
+void				find(t_map *map, int i);
+int				check_space(t_map *map, int *lst, int i, int j);
 void			print_solution(t_map *map);
-void			put_tetri(t_map *map, int i);
-int				erase_tetri(t_map *map, int i);
+void			put_tetri(t_map *map, int i, int j, int k);
+void				erase_tetri(t_map *map, int i);
 
 #endif

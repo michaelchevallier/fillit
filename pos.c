@@ -26,16 +26,12 @@ int			update_pos(t_map *map)
 	return (0);
 }
 
-int			check_space(t_map *map, int *lst)
+int			check_space(t_map *map, int *lst, int x, int y)
 {
-	int	x;
-	int	y;
 	int	a;
 	int	b;
 	int	l;
 
-	x = map->c_pos[0];
-	y = map->c_pos[1];
 	a = lst[0];
 	b = lst[1];
 	l = 0;
@@ -56,15 +52,11 @@ int			check_space(t_map *map, int *lst)
 	return ((l == 4)? 1: 0); 
 }
 
-void		put_tetri(t_map *map, int i)
+void		put_tetri(t_map *map, int i, int x, int y)
 {
-	int		x;
-	int		y;
 	int		a;
 	int		b;
 
-	x = map->c_pos[0];
-	y = map->c_pos[1];
 	a = map->tetrilist[i][0];
 	b = map->tetrilist[i][1];
 	map->map[x + a][y + b] = (char)(i + 65);
@@ -81,7 +73,7 @@ void		put_tetri(t_map *map, int i)
 	map->placed_tetri++;
 }
 
-int		erase_tetri(t_map *map, int i)
+void		erase_tetri(t_map *map, int i)
 {
 	int		x;
 	int		y;
@@ -90,13 +82,12 @@ int		erase_tetri(t_map *map, int i)
 	static int z;
 
 	z++;
-	if (z == 3)
-		ft_error();
+	/*if (z == 3)
+		ft_error();*/
 
-	if (i > -1 && i < map->nb_tetri)
+	if (map->rvalue != 1)
 	{
-		if (map_xy_chr(map, &x, &y, (i + 65)) == 0)
-			return (0);
+		map_xy_chr(map, &x, &y, (i + 65));
 		a = map->tetrilist[i][0];
 		b = map->tetrilist[i][1];
 		map->map[x + a][y + b] = '.';
@@ -113,7 +104,5 @@ int		erase_tetri(t_map *map, int i)
 		map->placed_tetri--;
 		map->c_pos[0] = x;
 		map->c_pos[1] = y;
-		return (1);
 	}
-	return 0;
 }

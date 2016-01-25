@@ -6,7 +6,7 @@
 /*   By: mchevall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 18:04:24 by mchevall          #+#    #+#             */
-/*   Updated: 2016/01/24 20:46:30 by dgalide          ###   ########.fr       */
+/*   Updated: 2016/01/25 16:42:31 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,59 +29,56 @@ int			check_behind(t_map *map, int i)
 	return (-1);
 }
 
-int			find(t_map *map, int i, int rvalue)
+void			find(t_map *map, int i)
 {
 	int		j;
 	int		k;
+	static long long int dodo;
 
-	ft_putchar('\n');
-	ft_printtab(map->map);
-	if (map->placed_tetri == map->nb_tetri)
+	k = 0;
+	j = 0;
+	//printf("rvalue = %d\n", map->rvalue);
+	if (map->rvalue != 1)
 	{
-		ft_putchar('A');
-		solution_cpy(map);
-		return (0);
-	}
-	if (i < 0 || i == map->nb_tetri)
-	{
-		ft_putchar('B');
-		i = 0;
-	}
-	if (map->tetrilist[i][8] == 1)
-	{
-		ft_putchar('C');
-		return (find(map, (i + 1), rvalue));
-	}
-	else
-	{
-		printf("tetri num %d\n", i);
-		ft_putchar('D');
-		while (check_space(map, map->tetrilist[i]) == 0)
+		while (j < map->c_range)
 		{
-			ft_putchar('E');
-			if (update_pos(map) == 0)
+			while (k < map->c_range)
 			{
-				ft_putchar('F');
-				printf("\nmap->last = %d ||| return erase = %d\n" ,map->last, erase_tetri(map, (map->last)));
-				map->last--;
-				return(find(map, i, rvalue));
+				if (check_space(map, map->tetrilist[i], j, k) == 1)
+				{
+					put_tetri(map, i, j, k);
+					dodo++;
+					if (dodo == 100000000)
+					{
+					ft_putchar('\n');
+					ft_printtab(map->map);
+					ft_putchar('\n');
+					dodo = 0;
+					}
+					if (map->placed_tetri == map->nb_tetri)
+					{
+						map->rvalue = 1;
+						solution_cpy(map);
+						map->s_range = map->c_range;
+						return ;
+					}
+					else if (map->rvalue != 1)
+					{
+						find(map, (i + 1));
+						erase_tetri(map, i);
+					}
+				}
+				k++;
 			}
+			j++;
+			k = 0;
 		}
-		ft_putchar('G');
-		put_tetri(map, i);
-		map->last = i;
-		return (find(map, (i + 1), rvalue));
 	}
-	return (0);
 }
 
-int			solve(t_map *map)
+void		solve(t_map *map)
 {
-	int	rvalue;
-
-	rvalue = 0;
-	find(map, 0, rvalue);
-	return (rvalue);
+	find(map, 0);
 }
 
 void		print_solution(t_map *map)
