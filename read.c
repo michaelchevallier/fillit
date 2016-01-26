@@ -6,7 +6,7 @@
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 17:49:32 by dgalide           #+#    #+#             */
-/*   Updated: 2016/01/25 18:26:58 by dgalide          ###   ########.fr       */
+/*   Updated: 2016/01/26 13:51:16 by mchevall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void			ft_read(int const fd, t_map *map)
 	j = 0;
 	k = 0;
 	ret = read(fd, buff, SIZE_BUFF);
+	if (ret == -1)
+		ft_error();
 	check(buff, ret);
 	map->tetrilist = malloc_list(((ret + 1) / 21));
 	while (k < ((ret + 1) / 21))
@@ -116,5 +118,5 @@ void			ft_read(int const fd, t_map *map)
 		j += 21;
 		k++;
 	}
-	map->nb_tetri = ((ret + 1)/ 21);
+	map->nb_tetri = ((ret + 1) / 21);
 }
